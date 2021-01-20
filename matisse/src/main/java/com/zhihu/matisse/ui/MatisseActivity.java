@@ -567,13 +567,17 @@ public class MatisseActivity extends AppCompatActivity implements
                             public void onClick(DialogInterface dialogInterface, int i) {
 //                                Log.d("MATISSE", "Did Click OK");
                                 mSpec.isDontShowVideoAlert = true;
-                                mSpec.delegate.onTapItem(null, true);
+                                if (mSpec.delegate != null) {
+                                    mSpec.delegate.onTapItem(null, true);
+                                }
                             }
                         }).
                         setCancelable(false).
                         show();
             }
-            mSpec.delegate.onTapItem(item, false);
+            if (mSpec.delegate != null) {
+                mSpec.delegate.onTapItem(item, false);
+            }
         }
         // notify bottom toolbar that check state changed.
         updateBottomToolbar();
