@@ -21,11 +21,10 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.view.ViewGroup;;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.cursoradapter.widget.CursorAdapter;
 import com.zhihu.matisse.R;
 import com.zhihu.matisse.internal.entity.Album;
 import com.zhihu.matisse.internal.entity.SelectionSpec;
@@ -65,7 +64,7 @@ public class AlbumsAdapter extends CursorAdapter {
 
         // do not need to load animated Gif
         SelectionSpec.getInstance().imageEngine.loadThumbnail(context, context.getResources().getDimensionPixelSize(R
-                        .dimen.media_grid_size), mPlaceholder,
+                        .dimen.album_cover_size), mPlaceholder,
                 (ImageView) view.findViewById(R.id.album_cover), album.getCoverUri());
     }
 }

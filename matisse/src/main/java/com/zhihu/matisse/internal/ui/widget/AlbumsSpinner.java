@@ -24,17 +24,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.ListPopupWindow;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.zhihu.matisse.R;
 import com.zhihu.matisse.internal.entity.Album;
+import com.zhihu.matisse.internal.ui.adapter.AlbumsAdapter;
 import com.zhihu.matisse.internal.utils.Platform;
 
 public class AlbumsSpinner {
 
     private static final int MAX_SHOWN_COUNT = 6;
-    private CursorAdapter mAdapter;
+    private AlbumsAdapter mAdapter;
     private TextView mSelected;
     private ListPopupWindow mListPopupWindow;
     private AdapterView.OnItemSelectedListener mOnItemSelectedListener;
@@ -91,7 +91,7 @@ public class AlbumsSpinner {
         }
     }
 
-    public void setAdapter(CursorAdapter adapter) {
+    public void setAdapter(AlbumsAdapter adapter) {
         mListPopupWindow.setAdapter(adapter);
         mAdapter = adapter;
     }
