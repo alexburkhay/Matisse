@@ -95,6 +95,7 @@ public abstract class BasePreviewActivity extends AppCompatActivity implements V
         mPager.setAdapter(mAdapter);
         mCheckView = (CheckView) findViewById(R.id.check_view);
         mCheckView.setCountable(mSpec.countable);
+        mCheckView.setVisibility(mSpec.allowsMultipleSelection ? View.VISIBLE : View.GONE);
 
         mCheckView.setOnClickListener(new View.OnClickListener() {
 

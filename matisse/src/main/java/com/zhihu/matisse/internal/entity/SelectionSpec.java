@@ -126,7 +126,7 @@ public final class SelectionSpec {
     }
 
     public boolean singleSelectionModeEnabled() {
-        return !countable && (maxSelectable == 1 || (maxImageSelectable == 1 && maxVideoSelectable == 1));
+        return !allowsMultipleSelection && (maxSelectable == 1 || (maxImageSelectable == 1 && maxVideoSelectable == 1));
     }
 
     public boolean needOrientationRestriction() {

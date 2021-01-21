@@ -36,14 +36,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -70,7 +69,6 @@ import com.zhihu.matisse.internal.utils.PathUtils;
 
 import java.io.File;
 import java.io.IOException;
-import com.zhihu.matisse.internal.utils.SingleMediaScanner;
 
 import java.util.ArrayList;
 
@@ -150,6 +148,10 @@ public class MatisseActivity extends AppCompatActivity implements
         if(navigationIcon != null) {
             navigationIcon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
         }
+
+        //bottom_toolbar
+        ViewGroup bottomToolbar = findViewById(R.id.bottom_toolbar);
+        bottomToolbar.setVisibility(mSpec.allowsMultipleSelection ? View.VISIBLE : View.GONE);
         mButtonPreview = findViewById(R.id.button_preview);
         if(SelectionSpec.getInstance().enablePreview) {
             mButtonPreview.setVisibility(View.VISIBLE);
@@ -418,7 +420,8 @@ public class MatisseActivity extends AppCompatActivity implements
             mButtonPreview.setEnabled(true);
             mButtonApply.setText(R.string.button_apply_default);
             mButtonApply.setEnabled(true);
-            if(!mSpec.allowsMultipleSelection) {
+            if(!mSpec.allowsMultipleSelection && !mSpec.showPreview) {
+                // no preview on select -> finish selection
                 this.onFinishSelection();
             }
         } else {
@@ -584,10 +587,16 @@ public class MatisseActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onMediaClick(Album album, Item item, int adapterPosition) {
+    public void onMediaClick(Album album, Item item, int adapterPosition,
+        AlbumMediaAdapter adapter) {
         Intent intent = new Intent(this, AlbumPreviewActivity.class);
         intent.putExtra(AlbumPreviewActivity.EXTRA_ALBUM, album);
         intent.putExtra(AlbumPreviewActivity.EXTRA_ITEM, item);
+        if (!mSpec.allowsMultipleSelection && !mSelectedCollection.isSelected(item)) {
+            mSelectedCollection.clear();
+            // select new item and go to preview
+            adapter.updateSelectedItem(item, this);
+        }
         intent.putExtra(BasePreviewActivity.EXTRA_DEFAULT_BUNDLE, mSelectedCollection.getDataWithBundle());
         startActivityForResult(intent, REQUEST_CODE_PREVIEW);
     }
