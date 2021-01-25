@@ -120,6 +120,10 @@ public class MediaStoreCompat {
         } else {
             storageDir = mContext.get().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         }
+        if (mCaptureStrategy.directory != null) {
+            storageDir = new File(storageDir, mCaptureStrategy.directory);
+            if (!storageDir.exists()) storageDir.mkdirs();
+        }
 
         // Avoid joining path components manually
         File tempFile = new File(storageDir, imageFileName);
@@ -143,6 +147,10 @@ public class MediaStoreCompat {
                     Environment.DIRECTORY_PICTURES);
         } else {
             storageDir = mContext.get().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        }
+        if (mCaptureStrategy.directory != null) {
+            storageDir = new File(storageDir, mCaptureStrategy.directory);
+            if (!storageDir.exists()) storageDir.mkdirs();
         }
 
         // Avoid joining path components manually
