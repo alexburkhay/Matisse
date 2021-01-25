@@ -25,19 +25,19 @@
         android:id="@+id/check_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|start"/>
+        android:layout_gravity="top|end"/>
 
     <ImageView
         android:id="@+id/gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="8dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_gif"
         android:visibility="gone"/>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
                  android:id="@+id/video_info"
                  android:layout_width="fill_parent"
                  android:layout_height="30dip"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             android:textColor="@android:color/white"
             android:textSize="12sp"/>
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
-            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             android:layout_marginBottom="6dp"
             android:src="@drawable/ic_video"/>
     </FrameLayout>

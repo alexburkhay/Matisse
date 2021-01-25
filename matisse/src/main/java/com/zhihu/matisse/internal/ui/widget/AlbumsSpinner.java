@@ -99,7 +99,7 @@ public class AlbumsSpinner {
     public void setSelectedTextView(TextView textView) {
         mSelected = textView;
         // tint dropdown arrow icon
-        Drawable[] drawables = mSelected.getCompoundDrawables();
+        Drawable[] drawables = mSelected.getCompoundDrawablesRelative();
         Drawable right = drawables[2];
         TypedArray ta = mSelected.getContext().getTheme().obtainStyledAttributes(
                 new int[]{R.attr.album_element_color});
