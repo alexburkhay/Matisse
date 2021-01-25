@@ -83,7 +83,7 @@ public class Album implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mId);
-        dest.writeParcelable(mCoverUri, 0);
+        dest.writeParcelable(mCoverUri, flags);
         dest.writeString(mDisplayName);
         dest.writeLong(mCount);
     }
